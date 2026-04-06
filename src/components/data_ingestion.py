@@ -8,6 +8,9 @@ from sklearn.model_selection import train_test_split
 from src.exception import CustomException
 from src.logger import logging
 from src.components.data_tranformation import DataTranformations
+from src.components.data_trainer import ModelTrainerConfig
+from src.components.data_trainer import ModelTrainer
+
 
 
 # -------------------- CONFIG CLASS --------------------
@@ -68,4 +71,10 @@ if __name__ == "__main__":
     train_data, test_data = obj.initiate_data_ingestion()
 
     data_tranformation = DataTranformations()
-    data_tranformation.initiate_data_tranformations(train_data, test_data)
+    #data_tranformation.initiate_data_tranformations(train_data, test_data)
+    train_arr, test_arr,_ = data_tranformation.initiate_data_tranformations(train_data, test_data)
+
+    modeltrainer = ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr, test_arr))
+
+
